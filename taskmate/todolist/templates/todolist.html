@@ -5,7 +5,10 @@
 {% endblock title %}
 
 {% block content %}
-<div class="container">
-  <h1>{{ welcome_text }}</h1>
-</div>
+  <div class="container">
+    {% for obj in all_tasks %}
+      {{ obj.task}} | {{ obj.done}}
+      </br>
+    {% endfor %}
+  </div>
 {% endblock content %}
