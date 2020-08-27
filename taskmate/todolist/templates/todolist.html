@@ -38,17 +38,17 @@
                     {% for obj in all_tasks %} 
                         {% if obj.done %}
                             <tr class="table-success">
-                                <td> {{ obj.task }}</td>
+                                <td> {{ obj.id }} | {{ obj.task }}</td>
                                 <td> Done</td>
                                 <td> Edit </td>
-                                <td> Delete </td>
+                                <td> <a href="{% url 'delete_task' obj.id %}"><button type="button" class="btn btn-primary">Delete</button> </a></td>
                             </tr>
                         {% else %}
                             <tr>
-                                <td> {{ obj.task }}</td>
+                                <td> {{ obj.id }} | {{ obj.task }}</td>
                                 <td> Not done </td>
                                 <td> Edit </td>
-                                <td> Delete </td>
+                                <td> <a href="{% url 'delete_task' obj.id %}"> <button type="button" class="btn btn-primary">Delete</button></a></td>
                             </tr>
                         {% endif %} 
                     {% endfor %}
