@@ -17,10 +17,6 @@ def todolist(request):
         all_tasks = TaskList.objects.all
 
         return render(request, 'todolist.html', {'all_tasks': all_tasks})
-        # context = {
-        #     'welcome_text': "Welcome to Todolist",
-        # }
-        # return render(request, 'todolist.html', context)
 
 
 def contact(request):
@@ -40,3 +36,18 @@ def delete_task(request, task_id):
     task = TaskList.objects.get(pk=task_id)
     task.delete()
     return redirect('todolist')
+
+def edit_task(request, task_id):
+     if request.method == "POST":
+         task = TaskList.objects.get(pk=task_id)
+         form = TaskForm(request.POST or None, instance=task)
+         if form.is_valid():
+             form.save()
+         messages.success(request, ("Task edited!"))
+         return redirect('todolist')
+    
+     else:
+        # Fetch all the objects from DB
+        task_obj = TaskList.objects.get(pk=task_id)
+
+        return render(request, 'edit.html', {'task_obj': task_obj})

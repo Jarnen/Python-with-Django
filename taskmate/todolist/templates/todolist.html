@@ -40,14 +40,14 @@
                             <tr class="table-success">
                                 <td> {{ obj.id }} | {{ obj.task }}</td>
                                 <td> Done</td>
-                                <td> Edit </td>
+                                <td> <a href="{% url 'edit_task' obj.id %}"> <button type="button" class="btn btn-primary">Edit</button></a></td>
                                 <td> <a href="{% url 'delete_task' obj.id %}"><button type="button" class="btn btn-primary">Delete</button> </a></td>
                             </tr>
                         {% else %}
                             <tr>
                                 <td> {{ obj.id }} | {{ obj.task }}</td>
                                 <td> Not done </td>
-                                <td> Edit </td>
+                                <td> <a href="{% url 'edit_task' obj.id %}"> <button type="button" class="btn btn-primary">Edit</button></a></td>
                                 <td> <a href="{% url 'delete_task' obj.id %}"> <button type="button" class="btn btn-primary">Delete</button></a></td>
                             </tr>
                         {% endif %} 
