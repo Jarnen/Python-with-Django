@@ -28,7 +28,7 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Task</th>
-                    <th scope="col">Done</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
                 </tr>
@@ -39,14 +39,14 @@
                         {% if obj.done %}
                             <tr class="table-success">
                                 <td> {{ obj.id }} | {{ obj.task }}</td>
-                                <td> Done</td>
+                                <td> <a href="{% url 'pending_task' obj.id %}"> Mark as Pending </a>  </td>
                                 <td> <a href="{% url 'edit_task' obj.id %}"> <button type="button" class="btn btn-primary">Edit</button></a></td>
                                 <td> <a href="{% url 'delete_task' obj.id %}"><button type="button" class="btn btn-primary">Delete</button> </a></td>
                             </tr>
                         {% else %}
                             <tr>
                                 <td> {{ obj.id }} | {{ obj.task }}</td>
-                                <td> Not done </td>
+                                <td> <a href="{% url 'complete_task' obj.id %}"> Mark as Complete </a>  </td>
                                 <td> <a href="{% url 'edit_task' obj.id %}"> <button type="button" class="btn btn-primary">Edit</button></a></td>
                                 <td> <a href="{% url 'delete_task' obj.id %}"> <button type="button" class="btn btn-primary">Delete</button></a></td>
                             </tr>
