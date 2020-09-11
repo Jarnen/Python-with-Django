@@ -22,6 +22,11 @@ def todolist(request):
 
         return render(request, 'todolist.html', {'all_tasks': all_tasks})
 
+def index(request):
+    context = {
+        'index_text': "Welcome to Index Page",
+    }
+    return render(request, 'index.html', context)
 
 def contact(request):
     context = {
