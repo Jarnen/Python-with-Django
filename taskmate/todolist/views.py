@@ -48,21 +48,30 @@ def about(request):
 @login_required
 def delete_task(request, task_id):
     task = TaskList.objects.get(pk=task_id)
-    task.delete()
+    if task.owner == request.user:
+        task.delete()
+    else:
+        messages.error(request,("Access Restricted!"))
     return redirect('todolist')
 
 @login_required
 def complete_task(request, task_id):
     task = TaskList.objects.get(pk=task_id)
-    task.done = True
-    task.save()
+    if task.owner == request.user:
+        task.done = True
+        task.save()
+    else:
+        messages.error(request,("Access Restricted!"))
     return redirect('todolist')
 
 @login_required
 def pending_task(request, task_id):
     task = TaskList.objects.get(pk=task_id)
-    task.done = False
-    task.save()
+    if task.owner == request.user:
+        task.done = False
+        task.save()
+    else:
+        messages.error(request,("Access Restricted!"))
     return redirect('todolist')
 
 @login_required
